@@ -4,6 +4,7 @@ import java.beans.Transient;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import java.lang.IllegalArgumentException;
 
 /**
  * Unit test for simple App.
@@ -36,7 +37,7 @@ public class AppTest
     {
         assertTrue( true );
     }
-
+    @Test(expected = IllegalArgumentException.class)
     public void testcase_2() throws InterruptedException {
         
         assertTrue( true );
