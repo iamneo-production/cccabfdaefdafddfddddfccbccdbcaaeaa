@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 8.856 s <<< FAILURE! - in TestSuite
+testcase_2(com.example.FirstTest)  Time elapsed: 0.965 s  <<< FAILURE!
+java.lang.AssertionError: Text is not as expected expected [Dropped!] but found [Drop here]
+	at com.example.FirstTest.testcase_2(FirstTest.java:47)
+
+testcase_3(com.example.FirstTest)  Time elapsed: 0.718 s  <<< FAILURE!
+java.lang.AssertionError: Color is not as expected expected [rgb(255, 250, 144)] but found [rgb(233, 233, 233)]
+	at com.example.FirstTest.testcase_3(FirstTest.java:60)
+
