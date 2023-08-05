@@ -44,7 +44,7 @@ public class FirstTest {
         actions.dragAndDrop(driver.findElement(By.id("draggable")), droppable).perform();
         String actualText = droppable.getText();
         String expectedText = "Dropped!";
-        Assert.assertEquals(actualText, expectedText, "Text is not as expected");
+        Assert.assertEquals(actualText, expectedText);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class FirstTest {
         String color = actualColor.substring(0, actualColor.indexOf(')') + 1);
         System.out.println(color);
         String expectedColor = "rgb(255, 250, 144)";
-        Assert.assertEquals(color, expectedColor, "Color is not as expected");
+        Assert.assertEquals(color, expectedColor);
 
     }
 
