@@ -1,8 +1,17 @@
 package com.example;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.testng.annotations.Test;
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeTest;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 
 /**
  * Unit test for simple App.
@@ -10,29 +19,54 @@ import junit.framework.TestSuite;
 public class AppTest 
     extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+    ChromeOptions chromeOptions = new ChromeOptions();
+    WebDriver driver = null;
+
+    @BeforeTest
+    public void beforeTest() throws Exception {
+
+        driver = new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
+
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    @Test
+    public void testcase_1() throws InterruptedException {
+        driver.get("http://jqueryui.com/droppable/");
+        String actualTitle = driver.getTitle();
+        String expectedTitle = "Droppable | jQuery UI";
+        Assert.assertEquals(actualTitle, expectedTitle);
+
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void testcase_2() throws InterruptedException {
+        // write Your Code here to Login
+
+        driver.switchTo().frame(0);
+        WebElement droppable = driver.findElement(By.id("droppable"));
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(driver.findElement(By.id("draggable")), droppable).perform();
+        String actualText = droppable.getText();
+        String expectedText = "Dropped!";
+        Assert.assertEquals(actualText, expectedText, "Text is not as expected");
+    }
+
+    @Test
+    public void testcase_3() throws InterruptedException {
+        // write Your Code here to Login
+        WebElement droppable = driver.findElement(By.id("droppable"));
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(driver.findElement(By.id("draggable")), droppable).perform();
+        String actualColor = droppable.getCssValue("background");
+        String color = actualColor.substring(0, actualColor.indexOf(')') + 1);
+        System.out.println(color);
+        String expectedColor = "rgb(255, 250, 144)";
+        Assert.assertEquals(color, expectedColor, "Color is not as expected");
+
+    }
+
+    @AfterTest
+    public void afterTest() {
+        driver.quit();
     }
 }
